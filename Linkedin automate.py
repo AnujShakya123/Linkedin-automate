@@ -23,9 +23,33 @@ driver = webdriver.Chrome(options=chrome_options)
 # Login to LinkedIn
 def linkedin_login():
     driver.get('https://www.linkedin.com/login')
-    WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'username'))).send_keys(LINKEDIN_EMAIL)
-    WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'password'))).send_keys(LINKEDIN_PASSWORD + Keys.RETURN)
-    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, 'global-nav')))
+    time.sleep(2)
+    
+    try:
+        email_field = driver.find_element(By.ID, 'username')
+        password_field = driver.find_element(By.ID, 'password')
+
+        email_field.send_keys(LINKEDIN_EMAIL)
+        password_field.send_keys(LINKEDIN_PASSWORD)
+        password_field.send_keys(Keys.RETURN)
+        
+        # Wait for the global navigation bar to confirm login
+        WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.ID, 'global-nav'))
+        )
+        
+        print("Login successful")
+    except TimeoutException:
+        print("Timeout: Login failed to complete within the specified time.")
+        driver.quit()
+    except NoSuchElementException as e:
+        print(f"Login failed: {e}")
+        driver.quit()
+
+    # It can also be used for login
+    # WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'username'))).send_keys(LINKEDIN_EMAIL)
+    # WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'password'))).send_keys(LINKEDIN_PASSWORD + Keys.RETURN)
+    # WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, 'global-nav')))
 
 # Verify login
 def verify_login():
@@ -142,6 +166,9 @@ try:
         time.sleep(8)
 finally:
     driver.quit()
+
+
+
 
 
 
