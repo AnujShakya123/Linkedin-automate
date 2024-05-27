@@ -7,9 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, WebDriverException
 
 # Configuration and driver setup
-LINKEDIN_EMAIL = 'anujshakya808@gmail.com'
-LINKEDIN_PASSWORD = 'Anuj@8645'
-POST_URL = 'https://www.linkedin.com/feed/update/urn:li:activity:7156969636683505664/'
+LINKEDIN_EMAIL = ''
+LINKEDIN_PASSWORD ='' 
+POST_URL = ''
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--disable-web-security")
@@ -171,9 +171,9 @@ finally:
 # from selenium.common.exceptions import TimeoutException, NoSuchElementException, WebDriverException
 
 # # Configuration and driver setup
-# LINKEDIN_EMAIL = 'anujshakya808@gmail.com'
-# LINKEDIN_PASSWORD = 'Anuj@8645'
-# POST_URL = 'https://www.linkedin.com/feed/update/urn:li:activity:7156969636683505664/'
+# LINKEDIN_EMAIL = ''
+# LINKEDIN_PASSWORD = ''
+# POST_URL = ''
 
 # chrome_options = webdriver.ChromeOptions()
 # chrome_options.add_argument("--disable-web-security")
